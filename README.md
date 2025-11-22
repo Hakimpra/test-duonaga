@@ -13,3 +13,5 @@ berikut cara setupnya
  run program
  - php artisan serve 
 
+$ untuk link dokumnetasi rest api
+https://docs.google.com/document/d/1qzIAHDBJmJ2_fwBA32vl-eIOjdzSVhR0Sv3OvEuegNw/edit?usp=sharing
