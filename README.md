@@ -3,7 +3,7 @@
 ## cara isntall
 berikut cara setupnya
 - clone repo cara
-- git clone git@gitlab.com:wakidij/test-tribintang.git
+- git clone https://github.com/Hakimpra/test-duonaga.git
 - cd namefolder // masuk ke directory folder yg sudah di clone vie cmd
 - php artisan key:generate
 - composer update
