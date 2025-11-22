@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "9ddf7a17-443c-4378-a8aa-f1dd68e11e24",
+		"name": "duanaga",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5441360"
+	},
+	"item": [
+		{
+			"name": "detail produk",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/produk/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produk",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "produk all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/produk?kategori_id=2&min_harga=4000&max_harga=13000",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produk"
+					],
+					"query": [
+						{
+							"key": "kategori_id",
+							"value": "2"
+						},
+						{
+							"key": "min_harga",
+							"value": "4000"
+						},
+						{
+							"key": "max_harga",
+							"value": "13000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tambah produk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kategori_id\": 2,\r\n    \"nama\": \"Roti Sobek\",\r\n    \"deskripsi\": \"roti sobek\",\r\n    \"harga\": 12000,\r\n    \"gambar\": \"gambar.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/produk",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit produk",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 8,\r\n    \"kategori_id\": 2,\r\n    \"nama\": \"Roti Sobek edddt\",\r\n    \"deskripsi\": \"roti sobek edit\",\r\n    \"harga\": 12000,\r\n    \"gambar\": \"gambar.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/produk/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produk",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hapus produk",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kategori_id\": 2,\r\n    \"nama\": \"Roti Sobek\",\r\n    \"deskripsi\": \"roti sobek\",\r\n    \"harga\": 12000,\r\n    \"gambar\": \"gambar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/produk/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"produk",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
