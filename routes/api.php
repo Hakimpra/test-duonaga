@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukApiController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,9 +15,22 @@ use App\Http\Controllers\ProdukApiController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    // Hanya admin yang boleh CRUD
+    Route::middleware('admin')->group(function () {
+        Route::post('/produk', [ProdukApiController::class, 'store']);
+        Route::put('/produk/{id}', [ProdukApiController::class, 'update']);
+        Route::delete('/produk/{id}', [ProdukApiController::class, 'destroy']);
+    });
 
 
-Route::apiResource('produk', ProdukApiController::class);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+    // Semua user bisa melihat produk
+    Route::get('/produk', [ProdukApiController::class, 'index']);
+    Route::get('/produk/{id}', [ProdukApiController::class, 'show']);
