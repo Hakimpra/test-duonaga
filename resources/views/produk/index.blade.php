@@ -91,7 +91,8 @@
                           <td>{{ $p->deskripsi }}</td>
                           <td style="text-align: right;" >{{ 'Rp '.addDigit($p->harga) }}</td>
                           <td>{{ $p->kategori->nama }}</td>
-                          <td>{{ $p->kategori->gambar }}</td>
+                          <td> <img src="{{ asset('upload/produk/'. $p->gambar) }}" width="100" class="img-thumbnail">
+           </td>
                         <td>
                           <a href="{{ route('produk.del', ['id' => $p->id]) }}">hapus</i></a>
                           |

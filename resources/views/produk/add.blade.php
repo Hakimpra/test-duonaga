@@ -34,8 +34,8 @@
                 </div>
               </div>
               <div class="card-body">
-            <form method="POST" action="#" >
-            <!-- <form method="POST" action="#" enctype="multipart"> -->
+            <!-- <form method="POST" action="#" > -->
+            <form method="POST" action="#"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlInput1">Nama</label>
@@ -58,11 +58,22 @@
                   <span class="number-danger">{{ $errors->first('harga') }}</span>
                 @endif
             </div>
-            <!-- <div class="form-group">
-              
-                <label for="exampleFormControlInput1">Gambar</label>
-                <input type="file" accept="image/*" name="gambar">
-            </div> -->
+            <div class="form-group">
+                      <div class="mb-3">
+            <label>Gambar Produk</label><br>
+            <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event)">
+            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+            
+            @if($produk != '')
+                <img src="{{ asset('upload/produk/'.$produk->gambar) }}" width="200" class="img-thumbnail">
+            @endif
+        </div>
+
+        <div class="mt-3">
+            <img id="preview" src="#" alt="Preview" class="img-thumbnail"
+                 style="display:none; width:200px;">
+        </div>
+            </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Kategori</label>
                 <select class="form-control" name="kategori" id="exampleFormControlSelect1" required>

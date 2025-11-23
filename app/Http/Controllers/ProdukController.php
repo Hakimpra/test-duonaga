@@ -49,7 +49,7 @@ class ProdukController extends Controller
             'deskripsi'   => 'required',
             'kategori'   => 'required',
             'harga'   => 'required',
-            // 'gambar'   => 'required',
+            'image' => 'nullable|image|max:5048'
         ];
         
         $messages = [
@@ -57,7 +57,7 @@ class ProdukController extends Controller
             'deskripsi.required'      => 'Deskripsi wajib diisi.',
             'kategori.required'      => 'Kategori wajib diisi.',
             'harga.required'      => 'Harga wajib diisi.',
-            // 'gambar.required'      => 'Gambar wajib diisi.',
+            'image.required'      => 'Gambar wajib diisi, maksimal ukuran 5048kb.'
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -73,11 +73,22 @@ class ProdukController extends Controller
             $produk = new Produk;  
             $edit = false;
         }
+        
+
+        $fileName = null;
+        if ($request->hasFile('image')) {
+            $fileName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('upload/produk'), $fileName);
+        }
+        
         $produk->nama = $request->input('nama');
         $produk->deskripsi = $request->input('deskripsi');
         $produk->kategori_id = $request->input('kategori');
         $produk->harga = $request->input('harga');
-        $produk->gambar = $request->input('gambar');
+        
+        if($request->image != null){
+            $produk->gambar = $fileName;
+        }
         
         $produk->save();
         return redirect()->route('produk')->with('success', 'Data Berhasil disimpan');
@@ -86,24 +97,12 @@ class ProdukController extends Controller
     public function date(Request $request)
     {
         $id = $request->input('kategori');
-        // $enddate = $request->input('enddate');
-        // // if($startdate == null || $enddate == null){
-        // //         return redirect()->route('karyawan')->with('warning', 'DATA BELUM LENGKAP');
-        // //     }elseif($startdate > $enddate){
-        // //         return redirect()->route('karyawan')->with('warning', 'Tangal awal harus lebih kecil dari tanggal akhir');
-        // //     }else{
-        //         $produk = Produk::whereBetween('tglmasuk', [$kategori])->get();
-        //             $produk = Produk::query();
-
-    // Filter kategori berdasarkan produk::where(...)
-    $kategori = Kategori::all();
-    if($id == null){
-        $produk = Produk::all();
-    }else{
-       $produk = Produk::where('kategori_id', $id)->get();
-
-
-    }
+        $kategori = Kategori::all();
+        if($id == null){
+            $produk = Produk::all();
+        }else{
+            $produk = Produk::where('kategori_id', $id)->get();
+        }
 
                     
         return view('produk.index', [
